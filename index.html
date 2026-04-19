@@ -784,22 +784,63 @@
   .copy-btn:hover { background: var(--highlight); }
   .copy-btn.copied { background: var(--accent); color: var(--paper); }
 
-  .contact-cta {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 28px;
-    padding: 16px 24px;
-    background: var(--accent);
+  /* ========= INQUIRY FORM ========= */
+  .inquiry-form { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,239,225,0.5);
+  }
+  .form-input {
+    background: rgba(245,239,225,0.07);
+    border: 1px solid rgba(245,239,225,0.15);
     color: var(--paper);
+    font-family: var(--f-body);
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form-input::placeholder { color: rgba(245,239,225,0.25); }
+  .form-input:focus { border-color: var(--accent); background: rgba(245,239,225,0.1); }
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M0 0l6 8 6-8z' fill='rgba(245,239,225,0.4)'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .form-select option { background: #1a1410; color: #f5efe1; }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 20px;
+    background: var(--accent);
+    color: #f5efe1;
+    border: none;
     font-family: var(--f-mono);
     font-size: 13px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    transition: all 0.2s;
-    border: 1.5px solid var(--accent);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 4px;
   }
-  .contact-cta:hover { background: var(--paper); color: var(--ink); }
-  .contact-cta .arrow { transition: transform 0.3s; }
-  .contact-cta:hover .arrow { transform: translateX(4px); }
+  .form-submit:hover { background: #e04d22; transform: translateY(-1px); }
+  .form-submit span { transition: transform 0.3s; display: inline-block; }
+  .form-submit:hover span { transform: translateX(4px); }
+
+  @media (max-width: 560px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
 
   /* ========= FOOTER ========= */
   footer {
@@ -1493,14 +1534,37 @@
           <span class="v">협의 가능</span>
         </div>
 
-        <div class="email-block">
-          <span class="em" id="emailText">dhkdrksel@naver.com</span>
-          <button class="copy-btn" id="copyBtn" aria-label="이메일 주소 복사">복사</button>
-        </div>
-
-        <a class="contact-cta" href="mailto:salim.engineering@gmail.com?subject=[살림공학 김빵구] 협업 문의">
-          메일로 문의하기 <span class="arrow">↗</span>
-        </a>
+        <form class="inquiry-form" action="https://formspree.io/f/xjgjrpjn" method="POST">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="f-name">이름 / Name</label>
+              <input class="form-input" id="f-name" type="text" name="name" placeholder="홍길동" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-email">이메일 / Email</label>
+              <input class="form-input" id="f-email" type="email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-brand">브랜드 · 회사명</label>
+            <input class="form-input" id="f-brand" type="text" name="brand" placeholder="(주)살림브랜드">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-type">문의 유형</label>
+            <select class="form-input form-select" id="f-type" name="type" required>
+              <option value="" disabled selected>선택해주세요</option>
+              <option value="branded-shorts">브랜디드 쇼츠</option>
+              <option value="ppl">PPL 삽입</option>
+              <option value="exclusive-review">단독 리뷰</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-msg">문의 내용</label>
+            <textarea class="form-input form-textarea" id="f-msg" name="message" placeholder="제품 소개, 희망 일정 등 자유롭게 작성해주세요." required></textarea>
+          </div>
+          <button class="form-submit" type="submit">문의 보내기 <span>→</span></button>
+        </form>
       </aside>
 
     </div>
