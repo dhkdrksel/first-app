@@ -930,6 +930,7 @@
       <a href="#about">§01 소개</a>
       <a href="#content">§02 콘텐츠</a>
       <a href="#business">§03 협업 문의</a>
+      <a href="#comments">§04 댓글</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
       <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">
@@ -1572,6 +1573,19 @@
 </section>
 
 
+<!-- ================= COMMENTS ================= -->
+<section class="chapter" id="comments">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">§ 04</div>
+      <h2 class="ch-title">댓글</h2>
+      <div class="ch-kicker">Comments</div>
+    </div>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
@@ -1683,6 +1697,14 @@
       });
     });
   });
+
+  // Disqus
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dhkdrksel.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 
   // Intersection: fade in chapters
   const obs = new IntersectionObserver((entries) => {
