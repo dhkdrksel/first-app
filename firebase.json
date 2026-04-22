@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".git",
+      ".idx",
+      ".vscode",
+      ".claude",
+      "node_modules"
+    ]
+  }
+}
